@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#982c35"><title>燕园一处 · AWE PKU</title><link rel="stylesheet" href="/style.css"><script src="/app.js" defer></script></head>
+<body>
+<aside class="sidebar">
+  <a class="brand" href="/" aria-label="燕园一处首页"><span class="seal">燕</span><span>燕园一处<small>AWE · PKU</small></span></a>
+  <div class="workspace">个人校园工作台 <span>LOCAL</span></div>
+  <nav aria-label="主导航">
+    <button data-view="all" class="active"><span>◫</span> 今日一览</button>
+    <button data-view="activities"><span>▦</span> 校园发现</button>
+    <button data-view="teaching"><span>▤</span> 我的学业</button>
+    <button data-view="treehole"><span>◎</span> 树洞检索</button>
+    <button data-view="saved"><span>☆</span> 我的收藏 <b id="save-count">0</b></button>
+  </nav>
+  <div class="sidebar-bottom"><div class="eyebrow">常用入口</div><a href="https://portal.pku.edu.cn/" target="_blank" rel="noreferrer">校内门户 <span>↗</span></a><a href="https://course.pku.edu.cn/" target="_blank" rel="noreferrer">教学网 <span>↗</span></a><a href="https://pkuknow.cn/" target="_blank" rel="noreferrer">北大知道 <span>↗</span></a><button id="sources-button">数据来源与接入 <span>↗</span></button><p>把散落的信息，放回你的生活里。</p></div>
+</aside>
+<main>
+  <header class="topbar"><span>PEKING UNIVERSITY <i>/</i> CAMPUS DESK</span><span id="today"></span></header>
+  <section class="intro"><div><div class="eyebrow">少一点寻找，多一点校园生活</div><h1 id="page-title">燕园的事，<br>在这一处。</h1><p id="page-description">课程里的下一步，校园里的新鲜事。</p></div><div class="window-art" aria-hidden="true"><div class="sun"></div><div class="tower"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="water"></div><span>一塔湖图 · 每日常新</span></div></section>
+  <section class="search-section"><label class="search"><span aria-hidden="true">⌕</span><input id="search" type="search" placeholder="搜索活动、通知、发布单位…" aria-label="搜索活动和通知"><kbd>/</kbd></label><div class="search-hint">公开信息可直接浏览 · 私人来源需先完成本机登录</div></section>
+  <section id="overview" class="overview"><div class="schedule"><div class="section-top"><h2>我的下一步 <span>ACADEMIC</span></h2><button id="add-task">＋ 添加待办</button></div><div id="tasks"></div><a class="connect-link" href="https://course.pku.edu.cn/" target="_blank" rel="noreferrer">个人待办 · 前往教学网核对课程作业 ↗</a></div><div class="note"><span class="eyebrow">留一点时间给校园</span><h2>今天，去发现<br>课表以外的事。</h2><p>讲座、演出、社团与新机会，<br>从感兴趣的一条开始。</p><button id="discover">浏览校园信息 <span>↗</span></button></div></section>
+  <section id="private-panel" hidden></section>
+  <section id="feed-section"><div class="section-top feed-heading"><div><div class="eyebrow">AROUND CAMPUS</div><h2 id="feed-title">校园正在发生</h2></div><button id="refresh">↻ 同步公开信息</button></div><div class="feed-controls"><div id="filters" role="group" aria-label="信息分类"></div><label class="registration"><input id="registration" type="checkbox"> 仅需报名</label></div><div class="feed-status"><span id="status" role="status">正在读取公开信息…</span><span id="result-count"></span></div><div id="feed" class="feed"></div><button id="load-more" hidden>查看更多信息 ↓</button></section>
+  <footer><span>燕园一处 · AWE PKU</span><span>个人项目 · 非北京大学官方服务 · 每条信息均可回到来源</span></footer>
+</main>
+<dialog id="task-dialog"><form id="task-form"><div class="eyebrow">MY NEXT STEP</div><h2>记下下一步</h2><label>待办事项<input id="task-title" required maxlength="160" placeholder="例如：完成计算机系统作业"></label><label>截止时间（可选）<input id="task-date" type="datetime-local"></label><div class="dialog-actions"><button type="button" id="cancel-task">取消</button><button class="primary" type="submit">添加待办</button></div></form></dialog>
+<dialog id="sources-dialog"><div class="eyebrow">CONNECTED SOURCES</div><h2>信息从哪里来</h2><div class="source-row"><strong>北大知道 · PKUKnow</strong><span>公开快照</span><p>保留标题、发布单位、发布时间和原文链接。页面仅含来源首页公开呈现的信息，并非全站数据。发布时间不等于活动开始时间。</p></div><div class="source-row"><strong>教学网 · pku3b</strong><span>本机连接器</span><p>填写 private/pku3b.toml 后，在“我的学业”同步真实课表、作业、公告。手动待办仍由你自行管理。</p></div><div class="source-row"><strong>北大树洞</strong><span>按需检索</span><p>填写 private/config.toml，通过本机终端登录后按关键词检索。支持原帖和分页评论。</p></div><div class="source-row"><strong>Agent · MCP / API</strong><span>已提供</span><p>统一搜索与详情读取可供你连接的 agent 使用。凭据不会通过工具返回；检索到的私人正文会进入该 agent 的上下文。本服务不另行调用模型。</p></div><p class="privacy">私人校园数据缓存在本机 private/；收藏、待办保存在此浏览器。当前无跨设备同步。</p><button id="close-sources" class="primary">知道了</button></dialog>
+<dialog id="document-dialog"><div class="eyebrow">SOURCE DOCUMENT</div><pre id="document-body"></pre><div class="dialog-actions"><button id="document-next" hidden>下一页评论 →</button><button id="close-document" class="primary">关闭</button></div></dialog>
+<div id="toast" role="status" hidden></div>
+</body></html>

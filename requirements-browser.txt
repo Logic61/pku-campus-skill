@@ -1,0 +1,2 @@
+# Only needed for the isolated manual-login Chrome window.
+playwright>=1.55,<2

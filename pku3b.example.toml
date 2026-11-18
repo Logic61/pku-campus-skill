@@ -1,0 +1,5 @@
+# python manage.py init copies this to private/pku3b.toml.
+# Fill in your account only in the local copy if using password login.
+username = ""
+password = ""
+secret_backend = "plaintext"

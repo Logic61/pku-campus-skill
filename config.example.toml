@@ -1,0 +1,22 @@
+# python manage.py init copies this to private/config.toml.
+# Fill in credentials only in the local copy. Paths are relative to the project.
+[blackboard]
+enabled = true
+executable = "bin/pku3b.exe"
+config_file = "private/pku3b.toml"
+cache_dir = "private/pku3b-cache"
+timeout_seconds = 60
+
+[treehole]
+enabled = true
+username = ""
+password = ""
+# Optional existing treehole Bearer token. Not the six-digit mobile OTP.
+token = ""
+session_file = "private/treehole-session.json"
+timeout_seconds = 20
+
+[agent]
+# Set to true to enable private retrieval and Blackboard sync via the
+# workbench, CLI, HTTP and MCP. Agent clients receive the returned content.
+allow_private = false

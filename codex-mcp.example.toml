@@ -1,0 +1,8 @@
+# Merge this section into ~/.codex/config.toml or trusted project .codex/config.toml.
+# No account, password, API key, or HTTP bearer token belongs here.
+# Replace both paths. On Windows use the virtualenv's .venv/Scripts/python.exe.
+[mcp_servers.awe_pku]
+command = "/absolute/path/to/awe-pku/.venv/bin/python"
+args = ["/absolute/path/to/awe-pku/mcp_server.py"]
+startup_timeout_sec = 15
+tool_timeout_sec = 240
